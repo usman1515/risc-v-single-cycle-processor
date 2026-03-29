@@ -40,10 +40,11 @@ begin
 
     proc_mux_store: process(all)
     begin
-        case i_load_src is
+        case i_store_src is
             when "00" => o_wd <= (31 downto 8 => '0') & i_rd2(7 downto 0);
             when "01" => o_wd <= (31 downto 16 => '0') & i_rd2(15 downto 0);
             when "10" => o_wd <= i_rd2;
+            when others => o_wd <= (others => '-');
         end case;
     end process proc_mux_store;
 

@@ -41,11 +41,18 @@ begin
     proc_mux_load: process(all)
     begin
         case i_load_src is
-            when "000" => o_wd3 <= (31 downto 8 => i_result(7)) & i_result(7 downto 0);
-            when "001" => o_wd3 <= (31 downto 16 => i_result(15)) & i_result(15 downto 0);
-            when "010" => o_wd3 <= i_result;
-            when "011" => o_wd3 <= (31 downto 8 => '0') & i_result(7 downto 0);
-            when "100" => o_wd3 <= (31 downto 16 => '0') & i_result(15 downto 0);
+            when "000" =>
+                o_wd3 <= (31 downto 8 => i_result(7)) & i_result(7 downto 0);
+            when "001" =>
+                o_wd3 <= (31 downto 16 => i_result(15)) & i_result(15 downto 0);
+            when "010" =>
+                o_wd3 <= i_result;
+            when "011" =>
+                o_wd3 <= (31 downto 8 => '0') & i_result(7 downto 0);
+            when "100" =>
+                o_wd3 <= (31 downto 16 => '0') & i_result(15 downto 0);
+            when others =>
+                o_wd3 <= (others => '-');
         end case;
     end process proc_mux_load;
 

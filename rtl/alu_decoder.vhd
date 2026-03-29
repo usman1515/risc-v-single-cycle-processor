@@ -3,7 +3,7 @@
 -- Engineer:
 --
 -- Design Name:
--- Module Name: mux_2x1
+-- Module Name: alu_decoder
 -- Project Name:
 -- Target Devices:
 -- Tool Versions:
@@ -99,7 +99,7 @@ begin
                 end if;
 
             -- I type addi
-            when "0110011" =>
+            when "0010011" =>
                 o_reg_write <= '1';
                 o_imm_src <= "000";   -- dont care
                 o_alu_src <= '1';
@@ -112,13 +112,13 @@ begin
                 o_pc_alu_src <= '0';
                 o_store_src <= "00";
                 o_load_src <= "010";
-                if i_funct3 = "000"             -- ADDI
+                if i_funct3 = "000" then             -- ADDI
                     o_alu_control <= "00000";
-                elsif i_funct3 = "100"          -- XORI
+                elsif i_funct3 = "100" then          -- XORI
                     o_alu_control <= "00100";
-                elsif i_funct3 = "110"          -- ORI
+                elsif i_funct3 = "110" then          -- ORI
                     o_alu_control <= "00011";
-                elsif i_funct3 = "111"          -- ANDI
+                elsif i_funct3 = "111" then          -- ANDI
                     o_alu_control <= "00010";
                 elsif i_funct3 = "001" and i_funct7 = "0000000" then  -- SLLI
                     o_alu_control <= "01010";
@@ -126,9 +126,9 @@ begin
                     o_alu_control <= "01011";
                 elsif i_funct3 = "101" and i_funct7 = "0100000" then  -- SRAI
                     o_alu_control <= "01100";
-                elsif i_funct3 = "010"          -- SLTI
+                elsif i_funct3 = "010" then          -- SLTI
                     o_alu_control <= "01001";
-                elsif i_funct3 = "011"          -- SLTIU
+                elsif i_funct3 = "011" then          -- SLTIU
                     o_alu_control <= "01000";
                 else
                     o_alu_control <= (others => '-');
@@ -149,20 +149,20 @@ begin
                 o_pc_alu_src <= '0';
                 o_store_src <= "00";
                 -- o_load_src <= "010";
-                if i_funct3 = "000"
+                if i_funct3 = "000" then
                     o_load_src <= "000";
-                elsif i_funct3 = "001"
+                elsif i_funct3 = "001" then
                     o_load_src <= "001";
-                elsif i_funct3 = "010"
+                elsif i_funct3 = "010" then
                     o_load_src <= "010";
-                elsif i_funct3 = "011"
+                elsif i_funct3 = "011" then
                     o_load_src <= "011";
-                elsif i_funct3 = "100"
+                elsif i_funct3 = "100" then
                     o_load_src <= "100";
                 end if;
 
             -- store instruction
-            when "0000011" =>
+            when "0100011" =>
                 o_alu_control <= "00000";   -- store
                 o_reg_write <= '0';
                 o_imm_src <= "001";
@@ -176,12 +176,12 @@ begin
                 o_pc_alu_src <= '0';
                 -- o_store_src <= "00";
                 o_load_src <= "010";
-                if i_funct3 = "000"
-                    o_store_src <= "000";   -- SB
-                elsif i_funct3 = "001"
-                    o_store_src <= "001";   -- SHW
-                elsif i_funct3 = "010"
-                    o_store_src <= "010";   -- SW
+                if i_funct3 = "000" then
+                    o_store_src <= "00";   -- SB
+                elsif i_funct3 = "001" then
+                    o_store_src <= "01";   -- SHW
+                elsif i_funct3 = "010" then
+                    o_store_src <= "10";   -- SW
                 end if;
 
             -- B type
@@ -198,17 +198,17 @@ begin
                 o_pc_alu_src <= '0';
                 o_store_src <= "00";
                 o_load_src <= "010";
-                if i_funct3 = "000"             -- BEQ
+                if i_funct3 = "000" then             -- BEQ
                     o_alu_control <= "00001";
-                elsif i_funct3 = "001"          -- BNE
+                elsif i_funct3 = "001" then          -- BNE
                     o_alu_control <= "01101";
-                elsif i_funct3 = "100"          -- BLT
+                elsif i_funct3 = "100" then          -- BLT
                     o_alu_control <= "01110";
-                elsif i_funct3 = "101"          -- BGE
+                elsif i_funct3 = "101" then          -- BGE
                     o_alu_control <= "01111";
-                elsif i_funct3 = "110"          -- BLTU
+                elsif i_funct3 = "110" then          -- BLTU
                     o_alu_control <= "01110";
-                elsif i_funct3 = "111"          -- BGEU
+                elsif i_funct3 = "111" then          -- BGEU
                     o_alu_control <= "01111";
                 else
                     o_alu_control <= (others => '-');

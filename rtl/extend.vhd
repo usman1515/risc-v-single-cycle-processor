@@ -44,11 +44,11 @@ begin
             when "000" =>
                 o_imm_ext <= (31 downto 12 => i_instr(31)) & i_instr(31 downto 20); -- I type 12 bit immediate
             when "001" =>
-                o_imm_ext <= (31 downto 12 => i_instr(31)) & i_instr(31 downto 25) & i_instr(11 downto 7) ; -- S type 12 bit immediate
+                o_imm_ext <= (31 downto 12 => i_instr(31)) & i_instr(31 downto 25) & i_instr(11 downto 7); -- S type 12 bit immediate
             when "010" =>
-                o_imm_ext <= (31 downto 12 => i_instr(31)) & i_instr(7) & i_instr(30 downto 25) & i_instr(11 downto 8) & '0' ; -- B type 13 bit signed immediate
+                o_imm_ext <= (31 downto 12 => i_instr(31)) & i_instr(7) & i_instr(30 downto 25) & i_instr(11 downto 8) & '0'; -- B type 13 bit signed immediate
             when "011" =>
-                o_imm_ext <= (31 downto 20 => i_instr(31)) & i_instr(19 downto 12) & instr(20) & i_instr(30 downto 21) & '0' ; -- J type 21 bit signed immediate
+                o_imm_ext <= (31 downto 20 => i_instr(31)) & i_instr(19 downto 12) & i_instr(20) & i_instr(30 downto 21) & '0'; -- J type 21 bit signed immediate
             when "100" =>
                 o_imm_ext <= i_instr(31 downto 12) & x"000"; -- U type 20 bit signed immediate
             when others =>

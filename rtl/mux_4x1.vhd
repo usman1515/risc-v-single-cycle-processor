@@ -35,7 +35,7 @@ entity mux_4x1 is
         i_data_b: in std_logic_vector(DATA_WIDTH-1 downto 0);
         i_data_c: in std_logic_vector(DATA_WIDTH-1 downto 0);
         i_data_d: in std_logic_vector(DATA_WIDTH-1 downto 0);
-        i_sel: in std_logic;
+        i_sel: in std_logic_vector(1 downto 0);
         o_data: out std_logic_vector(DATA_WIDTH-1 downto 0)
     );
 end entity mux_4x1;
