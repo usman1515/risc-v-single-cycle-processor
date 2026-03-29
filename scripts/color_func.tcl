@@ -1,5 +1,5 @@
-# * Example usage
-# print_red "Hello, this text is in red color!"
+# Example usage
+# text(underline: true)rint_red "Hello, this text is in red color!"
 
 proc print_red {input_string} {
     puts -nonewline "\033\[1;31m"; # set RED color for text
@@ -27,6 +27,12 @@ proc print_yellow {input_string} {
 
 proc print_blue {input_string} {
     puts -nonewline "\033\[1;34m"; # set BLUE color for text
+    puts $input_string
+    puts -nonewline "\033\[0m"; # reset color
+}
+
+proc print_white {input_string} {
+    puts -nonewline "\033\[1;37m"; # set WHITE color for text
     puts $input_string
     puts -nonewline "\033\[0m"; # reset color
 }
