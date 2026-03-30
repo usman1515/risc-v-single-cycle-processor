@@ -133,6 +133,43 @@ package rtl_components is
         );
     end component pc_target;
 
+    component data_memory is
+        port (
+            clk: in std_logic;
+            rst_n: in std_logic;
+            i_we: in std_logic;
+            i_addr: in std_logic_vector(31 downto 0);
+            i_wdata: in std_logic_vector(31 downto 0);
+            o_rdata: out std_logic_vector(31 downto 0)
+        );
+    end component data_memory;
 
+    component register_file is
+        port (
+            clk: in std_logic;
+            rst_n: in std_logic;
+            i_addr1: in std_logic_vector(4 downto 0);
+            i_addr2: in std_logic_vector(4 downto 0);
+            i_addr3: in std_logic_vector(4 downto 0);
+            i_we3: in std_logic;
+            i_wdata3: in std_logic_vector(31 downto 0);
+            o_rdata1: out std_logic_vector(31 downto 0);
+            o_rdata2: out std_logic_vector(31 downto 0)
+        );
+    end component register_file;
+
+    component instruction_memory is
+        port (
+            i_addr: in std_logic_vector(31 downto 0);
+            o_rdata: out std_logic_vector(31 downto 0)
+        );
+    end component instruction_memory;
+
+    component top_riscv_scp is
+        port (
+            clk: in std_logic;
+            rst_n: in std_logic
+        );
+    end component top_riscv_scp;
 
 end package rtl_components;
