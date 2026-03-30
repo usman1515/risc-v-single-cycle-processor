@@ -11,8 +11,8 @@ set part "xc7a35tcpg236-1"
 set board_part "digilentinc.com:basys3:part0:1.2"
 
 # set language
-set tb_lang "VHDL"
-set rtl_lang "Verilog"
+set rtl_lang "VHDL"
+set tb_lang "Verilog"
 set default_lib "xil_defaultlib"
 
 # for synthesis and implementation purposes
@@ -46,7 +46,6 @@ add_files -force -fileset sources_1 {
     ./rtl/mux_load.vhd \
     ./rtl/mux_store.vhd \
     ./rtl/pc.vhd \
-    ./rtl/pc_mux.vhd \
     ./rtl/pc_next.vhd \
     ./rtl/pc_target.vhd \
     ./rtl/register_file.vhd \
@@ -62,21 +61,20 @@ foreach file [get_files -filter {FILE_TYPE == VHDL}] {
 # add TB source files to the project
 print_yellow "adding TB source files"
 add_files -force -fileset sim_1 {
-    ./rtl/tb_alu.vhd \
-    ./rtl/tb_alu_decoder.vhd \
-    ./rtl/tb_data_memory.vhd \
-    ./rtl/tb_extend.vhd \
-    ./rtl/tb_instruction_memory.vhd \
-    ./rtl/tb_mux_2x1.vhd \
-    ./rtl/tb_mux_4x1.vhd \
-    ./rtl/tb_mux_load.vhd \
-    ./rtl/tb_mux_store.vhd \
-    ./rtl/tb_pc.vhd \
-    ./rtl/tb_pc_mux.vhd \
-    ./rtl/tb_pc_next.vhd \
-    ./rtl/tb_pc_target.vhd \
-    ./rtl/tb_register_file.vhd \
-    ./rtl/tb_top_riscv_scp.vhd
+    ./rtl/tb_alu.sv \
+    ./rtl/tb_alu_decoder.sv \
+    ./rtl/tb_data_memory.sv \
+    ./rtl/tb_extend.sv \
+    ./rtl/tb_instruction_memory.sv \
+    ./rtl/tb_mux_2x1.sv \
+    ./rtl/tb_mux_4x1.sv \
+    ./rtl/tb_mux_load.sv \
+    ./rtl/tb_mux_store.sv \
+    ./rtl/tb_pc.sv \
+    ./rtl/tb_pc_next.sv \
+    ./rtl/tb_pc_target.sv \
+    ./rtl/tb_register_file.sv \
+    ./rtl/tb_top_riscv_scp.sv
 }
 
 # set RTL top module - for design and implementation purposes
