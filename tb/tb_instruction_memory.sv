@@ -40,21 +40,15 @@ module tb_instruction_memory;
 
     initial begin
 
-        $display("--- Resetting the memory ---");
-        repeat(5) @(posedge clk) begin
-            rst_n = 1'b0;
-        end
-
         $display("--- Writing data in memory ---");
         for (int i=0; i<260; i++) begin
-            @(posedge clk);
-            i_addr = i;
+            #1 i_addr = i;
             display_result();
         end
 
         $display("--- Reading data from memory at random slots ---");
-        repeat(30) @(posedge clk) begin
-            i_addr = $urandom_range(0, 260);
+        repeat(30) begin
+            #1 i_addr = $urandom_range(0, 260);
             display_result();
         end
 
