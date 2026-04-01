@@ -61,20 +61,20 @@ foreach file [get_files -filter {FILE_TYPE == VHDL}] {
 # add TB source files to the project
 print_yellow "adding TB source files"
 add_files -force -fileset sim_1 {
-    ./rtl/tb_alu.sv \
-    ./rtl/tb_alu_decoder.sv \
-    ./rtl/tb_data_memory.sv \
-    ./rtl/tb_extend.sv \
-    ./rtl/tb_instruction_memory.sv \
-    ./rtl/tb_mux_2x1.sv \
-    ./rtl/tb_mux_4x1.sv \
-    ./rtl/tb_mux_load.sv \
-    ./rtl/tb_mux_store.sv \
-    ./rtl/tb_pc.sv \
-    ./rtl/tb_pc_next.sv \
-    ./rtl/tb_pc_target.sv \
-    ./rtl/tb_register_file.sv \
-    ./rtl/tb_top_riscv_scp.sv
+    ./tb/tb_alu.sv \
+    ./tb/tb_alu_decoder.sv \
+    ./tb/tb_data_memory.sv \
+    ./tb/tb_extend.sv \
+    ./tb/tb_instruction_memory.sv \
+    ./tb/tb_mux_2x1.sv \
+    ./tb/tb_mux_4x1.sv \
+    ./tb/tb_mux_load.sv \
+    ./tb/tb_mux_store.sv \
+    ./tb/tb_pc.sv \
+    ./tb/tb_pc_next.sv \
+    ./tb/tb_pc_target.sv \
+    ./tb/tb_register_file.sv \
+    ./tb/tb_top_riscv_scp.sv
 }
 
 # set RTL top module - for design and implementation purposes
