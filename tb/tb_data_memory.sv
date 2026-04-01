@@ -43,7 +43,7 @@ module tb_data_memory;
 
     task display_result;
         begin
-            #1 display("Time: %4t | rst_n:: %0b | i_we: %0b | i_addr: %8h | i_wdata: %8h | o_rdata: %8h,
+            #1 $display("Time: %4t | rst_n:: %0b | i_we: %0b | i_addr: %8h | i_wdata: %8h | o_rdata: %8h",
                 $time, rst_n, i_we, i_addr, i_wdata, o_rdata);
         end
     endtask
@@ -61,15 +61,15 @@ module tb_data_memory;
             rst_n = 1'b1;
             i_we = 1'b1;
             i_addr = i;
-            i_wdata = $urandom_range(32'h0, 32'hffff_ffff);
+            i_wdata = $urandom();
             display_result();
         end
 
         $display("--- Reading data from memory at random slots ---");
-        repeat (30) @(posedge clk);
+        repeat(30) @(posedge clk) begin
             rst_n = 1'b1;
             i_we = 1'b0;
-            i_addr = $urandom_range(32'h0, 32'h0000_00ff);
+            i_addr = $urandom_range(0, 128);
             display_result();
         end
 
