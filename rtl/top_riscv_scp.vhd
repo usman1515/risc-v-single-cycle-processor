@@ -73,10 +73,10 @@ architecture Behavioral of top_riscv_scp is
 
 begin
 
-    PC_MUX : mux_2x1
+    INST_PC_MUX : mux_2x1
         generic map (
             DATA_WIDTH => 32
-        );
+        )
         port map (
             i_data_a => pc_target,
             i_data_b => mux_plus4,
@@ -84,7 +84,7 @@ begin
             o_data   => pc_next
         );
 
-    PC : program_counter
+    INST_PC : program_counter
         port map (
             clk => clk,
             rst_n => rst_n,
@@ -92,16 +92,22 @@ begin
             o_pc => pc
         );
 
-    INSTR_MEM : instruction_memory
+    INST_PC_NEXT : program_counter_next
+        port map (
+            i_pc => pc,
+            o_pc_plus4 => mux_plus4
+        );
+
+    INST_INSTR_MEM : instruction_memory
         port map (
             i_addr => pc,
             o_rdata => instr
         );
 
-    REG_FILE : register_file
+    INST_REG_FILE : register_file
         port map (
             clk => clk,
-            rst_n => rst_n
+            rst_n => rst_n,
             i_addr1 => instr(19 downto 15),
             i_addr2 => instr(24 downto 20),
             i_addr3 => instr(11 downto 7),
@@ -111,17 +117,17 @@ begin
             o_rdata2 => rd2
         );
 
-    EXTEND : extend
+    INST_EXTEND : extend
         port map (
             i_instr => instr,
             i_imm_src => imm_src,
             o_imm_ext => imm_ext
         );
 
-    MUX_REG_TO_ALU : mux_2x1
+    INST_MUX_REG_TO_ALU : mux_2x1
         generic map (
             DATA_WIDTH => 32
-        );
+        )
         port map (
             i_data_a => pc_target,
             i_data_b => mux_plus4,
@@ -129,7 +135,7 @@ begin
             o_data   => pc_next
         );
 
-    ALU : alu
+    INST_ALU : alu
         port map (
             i_alu_control => alu_control,
             i_alu_srcA => src_a,
@@ -138,21 +144,21 @@ begin
             o_zero => zero
         );
 
-    MUX_STORE : mux_store
+    INST_MUX_STORE : mux_store
         port map (
             i_rd2 => rd2,
             i_store_src => store_src,
             o_wd => wd
         );
 
-    MUX_LOAD : mux_load
+    INST_MUX_LOAD : mux_load
         port map (
             i_result => result,
             i_load_src => load_src,
             o_wd3 => wd3
         );
 
-    DATA_MEM : data_memory
+    INST_DATA_MEM : data_memory
         port map (
             clk => clk,
             rst_n => rst_n,
@@ -162,27 +168,27 @@ begin
             o_rdata => read_data
         );
 
-    MUX_DM_TO_REG : mux_4x1
+    INST_MUX_DM_TO_REG : mux_4x1
         generic map (
             DATA_WIDTH => 32
-        );
+        )
         port map (
             i_data_a => alu_result,
             i_data_b => read_data,
             i_data_c => mux_plus4,
-            i_data_d => open,
+            i_data_d => (others => '0'),
             i_sel => result_src,
             o_data => result
         );
 
-    PC_TARGET : program_counter_target
+    INST_PC_TARGET : program_counter_target
         port map (
             i_pc_src_a => pc_src_a,
             i_imm_ext => imm_ext,
             o_pc_plus4 => pc_target
         );
 
-    ALU_DECODER : alu_decoder
+    INST_ALU_DECODER : alu_decoder
         port map (
             i_opcode => instr(6 downto 0),
             i_funct7 => instr(31 downto 25),
@@ -202,10 +208,10 @@ begin
             o_load_src => load_src
         );
 
-    REG_TO_PC_TARGET : mux_2x1
+    INST_REG_TO_PC_TARGET : mux_2x1
         generic map (
             DATA_WIDTH => 32
-        );
+        )
         port map (
             i_data_a => rd1,
             i_data_b => pc,
@@ -213,10 +219,10 @@ begin
             o_data   => pc_src_a
         );
 
-    MUX_PC_TO_ALU : mux_2x1
+    INST_MUX_PC_TO_ALU : mux_2x1
         generic map (
             DATA_WIDTH => 32
-        );
+        )
         port map (
             i_data_a => pc,
             i_data_b => rd1,
