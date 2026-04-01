@@ -84,7 +84,7 @@ begin
             o_data   => pc_next
         );
 
-    PC : pc
+    PC : program_counter
         port map (
             clk => clk,
             rst_n => rst_n,
@@ -175,7 +175,7 @@ begin
             o_data => result
         );
 
-    PC_TARGET : pc_target
+    PC_TARGET : program_counter_target
         port map (
             i_pc_src_a => pc_src_a,
             i_imm_ext => imm_ext,

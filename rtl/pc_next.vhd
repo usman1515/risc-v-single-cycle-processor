@@ -3,7 +3,7 @@
 -- Engineer:
 --
 -- Design Name:
--- Module Name: pc_next
+-- Module Name: program_counter_next
 -- Project Name:
 -- Target Devices:
 -- Tool Versions:
@@ -26,14 +26,14 @@ use work.rtl_components.all;
 
 
 
-entity pc_next is
+entity program_counter_next is
     port (
         i_pc: in std_logic_vector(31 downto 0);
         o_pc_plus4: out std_logic_vector(31 downto 0)
     );
-end entity pc_next;
+end entity program_counter_next;
 
-architecture Behavioral of pc_next is
+architecture Behavioral of program_counter_next is
 
 begin
 

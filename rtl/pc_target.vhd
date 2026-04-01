@@ -3,7 +3,7 @@
 -- Engineer:
 --
 -- Design Name:
--- Module Name: pc_target
+-- Module Name: program_counter_target
 -- Project Name:
 -- Target Devices:
 -- Tool Versions:
@@ -26,15 +26,15 @@ use work.rtl_components.all;
 
 
 
-entity pc_target is
+entity program_counter_target is
     port (
         i_pc_src_a: in std_logic_vector(31 downto 0);
         i_imm_ext: in std_logic_vector(31 downto 0);
         o_pc_plus4: out std_logic_vector(31 downto 0)
     );
-end entity pc_target;
+end entity program_counter_target;
 
-architecture Behavioral of pc_target is
+architecture Behavioral of program_counter_target is
 
 begin
 

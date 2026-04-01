@@ -69,7 +69,7 @@ package rtl_components is
 
     component mux_2x1 is
         generic (
-            DATA_WIDTH: integer
+            DATA_WIDTH: integer := 32
         );
         port (
             i_data_a: in std_logic_vector(DATA_WIDTH-1 downto 0);
@@ -81,7 +81,7 @@ package rtl_components is
 
     component mux_4x1 is
         generic (
-            DATA_WIDTH: integer
+            DATA_WIDTH: integer := 32
         );
         port (
             i_data_a: in std_logic_vector(DATA_WIDTH-1 downto 0);
@@ -109,29 +109,29 @@ package rtl_components is
         );
     end component mux_store;
 
-    component pc is
+    component program_counter is
         port (
             clk: in std_logic;
             rst_n: in std_logic;
             i_pc_next: in std_logic_vector(31 downto 0);
             o_pc: out std_logic_vector(31 downto 0)
         );
-    end component pc;
+    end component program_counter;
 
-    component pc_next is
+    component program_counter_next is
         port (
             i_pc: in std_logic_vector(31 downto 0);
             o_pc_plus4: out std_logic_vector(31 downto 0)
         );
-    end component pc_next;
+    end component program_counter_next;
 
-    component pc_target is
+    component program_counter_target is
         port (
             i_pc_src_a: in std_logic_vector(31 downto 0);
             i_imm_ext: in std_logic_vector(31 downto 0);
             o_pc_plus4: out std_logic_vector(31 downto 0)
         );
-    end component pc_target;
+    end component program_counter_target;
 
     component data_memory is
         port (

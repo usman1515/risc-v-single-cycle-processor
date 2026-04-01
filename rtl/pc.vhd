@@ -3,7 +3,7 @@
 -- Engineer:
 --
 -- Design Name:
--- Module Name: pc
+-- Module Name: program_counter
 -- Project Name:
 -- Target Devices:
 -- Tool Versions:
@@ -26,20 +26,20 @@ use work.rtl_components.all;
 
 
 
-entity pc is
+entity program_counter is
     port (
         clk: in std_logic;
         rst_n: in std_logic;
         i_pc_next: in std_logic_vector(31 downto 0);
         o_pc: out std_logic_vector(31 downto 0)
     );
-end entity pc;
+end entity program_counter;
 
-architecture Behavioral of pc is
+architecture Behavioral of program_counter is
 
 begin
 
-    proc_pc: process(clk)
+    proc_program_counter: process(clk)
     begin
         if rising_edge(clk) then
             if rst_n = '0' then
@@ -48,7 +48,7 @@ begin
                 o_pc <= i_pc_next;
             end if;
         end if;
-    end process proc_pc;
+    end process proc_program_counter;
 
 end architecture Behavioral;
 
